@@ -1,0 +1,424 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CSS Variables for consistent theming */
+:root {
+    --primary-color: #667eea;
+    --primary-dark: #5a67d8;
+    --secondary-color: #f687b3;
+    --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-background: rgba(255, 255, 255, 0.95);
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --border-color: #e2e8f0;
+    --error-color: #f56565;
+    --success-color: #48bb78;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1), 0 6px 10px rgba(0, 0, 0, 0.08);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Body and container styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background-gradient);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    line-height: 1.6;
+    color: var(--text-primary);
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Calculator card styling */
+.calculator-card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 40px 30px;
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+}
+
+.calculator-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--background-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Form section styles */
+.form-section {
+    margin-bottom: 30px;
+}
+
+.age-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Input group styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    letter-spacing: 0.3px;
+}
+
+.input-field {
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: white;
+    color: var(--text-primary);
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+
+.input-field:hover {
+    border-color: #cbd5e0;
+}
+
+/* Custom date input styling */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.5);
+    transition: var(--transition);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    filter: invert(0.7);
+}
+
+/* Calculate button styling */
+.calculate-btn {
+    background: var(--background-gradient);
+    color: white;
+    border: none;
+    padding: 16px 24px;
+    border-radius: var(--border-radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculate-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.calculate-btn:hover::before {
+    left: 100%;
+}
+
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.calculate-btn:active {
+    transform: translateY(0);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+    transition: var(--transition);
+}
+
+.calculate-btn:hover .btn-icon {
+    transform: rotate(180deg);
+}
+
+/* Result section styling */
+.result-section {
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+
+.result-section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.result-section.hidden {
+    display: none;
+}
+
+.result-card {
+    background: linear-gradient(135deg, #f6f8fb 0%, #ffffff 100%);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--background-gradient);
+}
+
+.result-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 20px;
+    background: var(--background-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pulse 2s infinite;
+}
+
+.result-icon svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+}
+
+.result-greeting {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.age-details {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.age-item {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    min-width: 80px;
+    transition: var(--transition);
+}
+
+.age-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.age-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: block;
+}
+
+.age-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+}
+
+/* Footer styling */
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+    }
+}
+
+/* Error state styling */
+.error-message {
+    background: rgba(245, 101, 101, 0.1);
+    border: 1px solid var(--error-color);
+    color: var(--error-color);
+    padding: 12px;
+    border-radius: var(--border-radius);
+    margin-top: 15px;
+    font-size: 0.9rem;
+    display: none;
+    animation: slideIn 0.3s ease-out;
+}
+
+.error-message.show {
+    display: block;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+    body {
+        padding: 15px;
+    }
+    
+    .calculator-card {
+        padding: 30px 20px;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .age-details {
+        gap: 10px;
+    }
+    
+    .age-item {
+        min-width: 70px;
+        padding: 12px;
+    }
+    
+    .age-number {
+        font-size: 1.5rem;
+    }
+    
+    .result-greeting {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .calculator-card {
+        padding: 25px 15px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .calculate-btn {
+        font-size: 1rem;
+        padding: 14px 20px;
+    }
+    
+    .age-details {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .age-item {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus states for better accessibility */
+.calculate-btn:focus,
+.input-field:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}

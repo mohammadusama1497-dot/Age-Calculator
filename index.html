@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main container with gradient background -->
+    <div class="container">
+        <!-- Card wrapper for the calculator -->
+        <div class="calculator-card">
+            <!-- Header section -->
+            <header class="header">
+                <h1 class="title">Age Calculator</h1>
+                <p class="subtitle">Find out your exact age in years, months, and days</p>
+            </header>
+
+            <!-- Main form section -->
+            <main class="form-section">
+                <form id="ageForm" class="age-form">
+                    <!-- Name input field -->
+                    <div class="input-group">
+                        <label for="name" class="input-label">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="input-field" 
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
+                    <!-- Date of birth input field -->
+                    <div class="input-group">
+                        <label for="dob" class="input-label">Date of Birth</label>
+                        <input 
+                            type="date" 
+                            id="dob" 
+                            name="dob" 
+                            class="input-field"
+                            required
+                        >
+                    </div>
+
+                    <!-- Calculate button -->
+                    <button type="submit" class="calculate-btn">
+                        <span>Calculate Age</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5l-5-5-5 5M17 19l-5 5-5-5"/>
+                        </svg>
+                    </button>
+                </form>
+            </main>
+
+            <!-- Result section (initially hidden) -->
+            <section id="resultSection" class="result-section hidden">
+                <div class="result-card">
+                    <div class="result-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <div class="result-content">
+                        <h3 class="result-greeting" id="resultGreeting"></h3>
+                        <div class="age-details" id="ageDetails"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>Made with ❤️ for calculating ages</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
